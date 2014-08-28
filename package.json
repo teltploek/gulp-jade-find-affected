@@ -1,0 +1,38 @@
+{
+  "name": "gulp-jade-find-affected",
+  "version": "0.0.1",
+  "description": "",
+  "keywords": [
+    "jade",
+    "gulpplugin"
+  ],
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": {
+    "name": "Brian Frisch",
+    "email": "brian.frisch@gmail.com"
+  },
+  "dependencies": {
+    "vinyl-fs" : "*",
+    "glob" : "*",
+    "glob-stream" : "*",
+    "lodash" : "*",
+    "through2" : "*",
+    "map-stream" : "*",
+    "vinyl" : "*",
+    "gulp-util" : "*"
+  },
+  "main": "index.js",
+  "engines": {
+    "node": ">= 0.10"
+  },
+  "devDependencies": {
+    "gulp": "~3.4.0"
+  },
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/teltploek/gulp-jade-find-affected/issues"
+  }
+}
