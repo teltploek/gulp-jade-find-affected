@@ -17,23 +17,22 @@ $ npm install --save-dev gulp-jade-find-affected
 
 ## Usage
 
-Should be used in conjunction with [gulp-watch](https://www.npmjs.org/package/gulp-watch) where ```{ emit : 'one' }``` is set in options:
+Should be used in conjunction with [gulp-watch](https://www.npmjs.org/package/gulp-watch) where ```{ glob : src, emitOnGlob : false }``` is set in options:
 
 ```js
 var gulp = require('gulp');
 var watch = require('gulp-watch');
 var affected = require('gulp-jade-find-affected');
 
-var SRC = 'jade/**/*.jade';
-var DEST = 'dist';
+var src = 'jade/**/*.jade';
+var dest = 'dist';
 
 gulp.task('watch-jade', function () {
-	return gulp.src(SRC)
-		.pipe(watch({ emit : 'one' }))
+	watch({ glob : src, emitOnGlob: false })
 		.pipe(affected())
 		// jade will only get (and compile) the files in your base directory which have been affected by the changed file
 		.pipe(jade())
-		.pipe(gulp.dest(DEST));
+		.pipe(gulp.dest(dest));
 });
 ```
 

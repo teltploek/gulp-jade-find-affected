@@ -55,20 +55,21 @@ function logEvent(filepathAffected, filePathChanged) {
 module.exports = function(){
 
   function FindAffected(file, enc, cb){
+    var base = file.cwd + '\\' + file.base;
     var that = this;
 
     // now find files that were affected by the change
-    findAffectedRecurse(file, file.base, function(affectedFiles) {
+    findAffectedRecurse(file, base, function(affectedFiles) {
       _.each(affectedFiles, function(affectedFile) {
         
         that.push(new File({
-          base: file.base,
+          base: base,
           path: affectedFile.path.replace(/\//g, '\\'),
           contents: new Buffer(affectedFile.content)
         }));
 
         // log event to the screen
-        logEvent(path.basename(file.path), affectedFile.path.replace(/\//g, '\\').replace(file.base, ''));
+        logEvent(path.basename(file.path), affectedFile.path.replace(/\//g, '\\').replace(base, ''));
       });
     });
 

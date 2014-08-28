@@ -1,14 +1,14 @@
 {
   "name": "gulp-jade-find-affected",
-  "version": "0.0.1",
-  "description": "",
+  "version": "0.1.1",
+  "description": "Find affected files when changing jade files that are dependencies in other files and pass them through the stream for compilation",
   "keywords": [
     "jade",
     "gulpplugin"
   ],
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git@github.com:teltploek/gulp-jade-find-affected.git"
   },
   "author": {
     "name": "Brian Frisch",
