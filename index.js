@@ -13,21 +13,21 @@ var File = require('vinyl');
 
 var foundFiles = [];
 
-function findAffectedRecurse(path, filesBase, cb) {
-  if (typeof path === 'object') path = path.path;
+function findAffectedRecurse(filePath, filesBase, cb) {
+  if (typeof filePath === 'object') filePath = filePath.path;
 
   var file = new File({
-    path: path.replace(/\//g, '\\')
+    path: filePath
   });
 
-  var changedFile = file.path.replace(filesBase, '').split('.jade')[0];
-  changedFile = changedFile.replace('\\', '/');
+  var changedFile = path.relative(filesBase, file.path).split('.jade')[0];
 
-  glob(filesBase + '/**/*.jade', {}, function (er, files) {
+  glob( path.join(filesBase, '/**/*.jade'), {}, function (er, files) {
     _.each(files, function(path, i) {
       var jadeFile = fs.readFileSync(path, 'utf8').replace(/\r\n|\r/g, '\n');
 
-      var pattern = new RegExp('include (?:\.\.\/)?('+changedFile+')');
+      var testfile = changedFile.replace(/\\/g, '/');
+      var pattern = new RegExp('include (?:\.\.\/)?('+testfile+')');
       var res = pattern.test(jadeFile);       
 
       // let's map out the paths we've found in where the changed file will affect changes
@@ -55,21 +55,20 @@ function logEvent(filepathAffected, filePathChanged) {
 module.exports = function(){
 
   function FindAffected(file, enc, cb){
-    var base = file.cwd + '\\' + file.base;
+    var base = path.resolve(file.cwd, file.base);
     var that = this;
 
     // now find files that were affected by the change
     findAffectedRecurse(file, base, function(affectedFiles) {
       _.each(affectedFiles, function(affectedFile) {
-        
         that.push(new File({
           base: base,
-          path: affectedFile.path.replace(/\//g, '\\'),
+          path: affectedFile.path,
           contents: new Buffer(affectedFile.content)
         }));
 
         // log event to the screen
-        logEvent(path.basename(file.path), affectedFile.path.replace(/\//g, '\\').replace(base, ''));
+        logEvent(path.basename(file.path), affectedFile.path.replace(base, ''));
       });
     });
 
