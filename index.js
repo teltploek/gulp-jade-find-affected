@@ -21,8 +21,9 @@ function findAffectedRecurse(filePath, filesBase, cb) {
   });
 
   var changedFile = path.relative(filesBase, file.path).split('.jade')[0];
+  var filesPath = path.join(filesBase, '/**/*.jade');
 
-  glob( path.join(filesBase, '/**/*.jade'), {}, function (er, files) {
+  glob(filesPath , {}, function (er, files) {
     _.each(files, function(path, i) {
       var jadeFile = fs.readFileSync(path, 'utf8').replace(/\r\n|\r/g, '\n');
 
@@ -68,9 +69,16 @@ module.exports = function(){
         }));
 
         // log event to the screen
-        logEvent(path.basename(file.path), affectedFile.path.replace(base, ''));
+        logEvent(path.basename(file.path), path.relative(base, affectedFile.path));
       });
     });
+
+    // also compile yourself a long with the affected files
+    this.push(new File({
+      base: base,
+      path: file.path,
+      contents: file._contents
+    }))
 
     return cb();
   }

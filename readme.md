@@ -35,6 +35,12 @@ gulp.task('watch-jade', function () {
 		.pipe(gulp.dest(dest));
 });
 ```
+## Changelog
+
+* 0.1.3 - Fixed bug where files in root wouldn't be passed through the stream if they weren't dependencies in other files.
+* 0.1.2 - Increased portability of module to several operating systems.
+* 0.1.1 - Fixed bug related to file base.
+* 0.1.0 - First release
 
 ## License
 
