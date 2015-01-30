@@ -1,8 +1,8 @@
 # [gulp](http://gulpjs.com)-jade-find-affected
 
-> Run through jade files to find files that depend on changed file.
+> Run through jade files to compile files that depend on a changed included file.
 
-Sometimes you want to find jade files that are affected by a change in another jade file.
+Sometimes you want to compile jade files that are affected by a change in another jade file.
 
 Let's say you have an index.jade with an include to includes/includefile.jade. You make a change in includes/includefile.jade, but also want to have index.jade marked as a subject of change so it can be compiled.
 

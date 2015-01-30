@@ -21,7 +21,7 @@ function findAffectedRecurse(filePath, filesBase, cb) {
   });
 
   var changedFile = path.relative(filesBase, file.path).split('.jade')[0];
-  var filesPath = path.join(filesBase, '/**/*.jade');
+  var filesPath = path.join(filesBase, '**/*.jade');
 
   glob(filesPath , {}, function (er, files) {
     _.each(files, function(path, i) {
@@ -56,6 +56,8 @@ function logEvent(filepathAffected, filePathChanged) {
 module.exports = function(){
 
   function FindAffected(file, enc, cb){
+    foundFiles = [];
+    
     var base = path.resolve(file.cwd, file.base);
     var that = this;
 
