@@ -1,12 +1,12 @@
 # [gulp](http://gulpjs.com)-jade-find-affected
 
-> Run through jade files to compile files that depend on a changed included file.
+> When a change happens in an included file, find the files that are affected by the changes and send their paths through the stream
 
 ![alt text](https://raw.githubusercontent.com/teltploek/gulp-jade-find-affected/master/docs/demo.gif "Demo")
 
 Sometimes you want to compile jade files that are affected by a change in another jade file.
 
-Let's say you have an index.jade with an include to includes/includefile.jade. You make a change in includes/includefile.jade, but also want to have index.jade marked as a subject of change so it can be compiled.
+Let's say you have an frontpage.jade with an include to includes/an-included-file.jade. You make a change in includes/an-included-file.jade, but also want to have frontpage.jade marked as a subject of change so it can be compiled.
 
 This module takes care of that and should also work well with livereload of the compiled changed files.
 
@@ -39,6 +39,7 @@ gulp.task('watch-jade', function () {
 ```
 ## Changelog
 
+* 0.1.4 - Fixed bug where files found in first iteration would be stored and recompiled on following iterations regardless of whether or not they were actually affected files.
 * 0.1.3 - Fixed bug where files in root wouldn't be passed through the stream if they weren't dependencies in other files.
 * 0.1.2 - Increased portability of module to several operating systems.
 * 0.1.1 - Fixed bug related to file base.
