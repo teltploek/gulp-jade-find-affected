@@ -1,6 +1,6 @@
 {
   "name": "gulp-jade-find-affected",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "description": "Find affected files when changing jade files that are dependencies in other files and pass them through the stream for compilation",
   "keywords": [
     "jade",
