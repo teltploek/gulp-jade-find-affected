@@ -36,6 +36,7 @@ gulp.task('watch-jade', function () {
 ```
 ## Changelog
 
+* 0.2.0 - Bumped version. Cooperation from here on forward is with newer version of gulp-watch, which could present breaking changes.
 * 0.1.5 - Removed instructions to pass deprecated options to gulp-watch
 * 0.1.4 - Fixed bug where files found in first iteration would be stored and recompiled on following iterations regardless of whether or not they were actually affected files.
 * 0.1.3 - Fixed bug where files in root wouldn't be passed through the stream if they weren't dependencies in other files.
