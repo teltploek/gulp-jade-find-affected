@@ -28,8 +28,13 @@ function findAffectedRecurse(filePath, filesBase, cb) {
       var jadeFile = fs.readFileSync(path, 'utf8').replace(/\r\n|\r/g, '\n');
 
       var testfile = changedFile.replace(/\\/g, '/');
-      var pattern = new RegExp('include (?:\.\.\/)?('+testfile+')');
-      var res = pattern.test(jadeFile);       
+      var patterns = [];
+
+      patterns.push(new RegExp('include (?:\.\.\/)?('+testfile+')'));
+      patterns.push(new RegExp('extends (?:\.\.\/)?('+testfile+')'));
+
+
+      var res = patterns[0].test(jadeFile) || patterns[1].test(jadeFile);
 
       // let's map out the paths we've found in where the changed file will affect changes
       var foundPaths = _.map(foundFiles, 'path');

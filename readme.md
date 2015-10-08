@@ -36,6 +36,7 @@ gulp.task('watch-jade', function () {
 ```
 ## Changelog
 
+* 0.2.2 - Added change triggering for extends as requested in issues.
 * 0.2.1 - Bumped again, to be able to re-publish with new changelog. Seems important enough though.
 * 0.2.0 - Bumped version. Cooperation from here on forward is with newer version of gulp-watch, which could present breaking changes.
 * 0.1.5 - Removed instructions to pass deprecated options to gulp-watch
